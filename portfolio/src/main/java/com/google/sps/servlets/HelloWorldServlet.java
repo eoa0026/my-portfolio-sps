@@ -5,6 +5,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import com.google.gson.Gson;
 
 /** Handles requests sent to the /hello URL. Try running a server and navigating to /hello! */
 @WebServlet("/hello")
@@ -12,7 +14,26 @@ public class HelloWorldServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("Hello Peter!");
+      ArrayList<String> arr = new ArrayList<String>(); // Creates an arrayList 
+      //Add Elements to the list
+      arr.add("Test");
+      arr.add("Testing");
+      arr.add("Tested");
+      //convert to json string
+      String json = convertToJson(arr);
+      
+      response.setContentType("application/json;");
+      response.getWriter().println(json);
+  }
+
+    private String convertToJson(ArrayList<String> arr) {
+      String json = arr.get(0) + ", " + arr.get(1) + ", " + arr.get(2);
+      return json;
+    }
+
+    private String convertToJsonUsingGson(ArrayList<String> arr) {
+    Gson gson = new Gson();
+    String json = gson.toJson(arr);
+    return json;
   }
 }
