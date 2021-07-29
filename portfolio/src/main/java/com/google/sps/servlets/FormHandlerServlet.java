@@ -1,4 +1,4 @@
-package main.java.com.google.sps.servlets;
+package com.google.sps.servlets;
 
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
@@ -13,9 +13,9 @@ public class FormHandlerServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         // Get the value entered in the form.
-        String textValue = request.getParameter("text-input");
-        String textValue2 = request.getParameter("text-input2");
-        String textValue3 = request.getParameter("text-input3");
+        String textValue = request.getParameter("name");
+        String textValue2 = request.getParameter("email");
+        String textValue3 = request.getParameter("message");
 
         // Print the value so you can see it in the server logs.
         System.out.println("You submitted: " + textValue);
